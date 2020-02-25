@@ -1,10 +1,10 @@
 {
-  "name": "yaya",
+  "name": "webpack-reactTs-cli",
   "version": "1.0.0",
   "description": "jiaoshoujia",
   "main": "./src/pages/index.jsx",
+  "private": false,
   "scripts": {
-    "test": "karma start",
     "start": "webpack --config ./config/dev.conf.js",
     "build": "webpack --config ./config/pro.conf.js",
     "dev": "webpack-dev-server --config ./config/dev.conf.js"
@@ -12,7 +12,7 @@
   "author": "yaya",
   "license": "ISC",
   "dependencies": {
-    "@types/react": "^16.9.20",
+    "@types/react": "^16.9.22",
     "@types/react-dom": "^16.9.5",
     "autoprefixer": "^9.7.4",
     "fs": "0.0.1-security",

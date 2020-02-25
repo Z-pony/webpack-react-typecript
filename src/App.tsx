@@ -9,11 +9,24 @@
 // }
 import * as React from 'react';
 // import * as pic from '../src/assets/img/2.jpeg'
-import * as pic from 'src/assets/img/2.jpeg'
-// const pic = require('../src/assets/img/2.jpeg')
+// import * as pic from 'src/assets/img/2.jpeg'
+const pic = require('../src/assets/img/2.jpeg')
 import 'src/assets/css/app.less'
+import Button from './Button'
 
-export default class App extends React.Component {
+interface IProps {
+  color: string,
+  size?: string,
+}
+interface IState {
+  count: number,
+}
+
+export default class App extends React.Component<IProps, IState>  {
+  state = {
+    count: 1,
+  }
+
   render() {
    const style = {
      color: 'red'
@@ -22,6 +35,7 @@ export default class App extends React.Component {
       <div className="app">
         <div style={style} className="test">hello world</div>
         <img src={pic}></img>
+        <Button/>
       </div>
     );
   }
