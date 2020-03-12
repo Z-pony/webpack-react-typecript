@@ -4,8 +4,7 @@
     ["@babel/preset-env",
       {
         "useBuiltIns": "usage",    // 只编译需要编译的代码
-        "corejs": "3.0.1",
-        "modules": "commonjs"
+        "corejs": "3.0.1"
       }
     ],  // 将ES6语法转换为es5
     [

@@ -22,7 +22,7 @@
       ]
     },
     "moduleResolution": "node",
-    "target": "es2015", // 编译的目标是什么版本的
+    "target": "esnext", // 编译的目标是什么版本的
     "outDir": "build/dist", // 输出目录
     "lib": [ // 编译过程中  需要引入的库文件的列表
       "es5",

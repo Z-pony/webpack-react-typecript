@@ -27,6 +27,9 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
+            loader: 'babel-loader',
+          },
+          {
             loader: 'ts-loader',
             options: {
               transpileOnly: true,
@@ -46,20 +49,20 @@ module.exports = {
           },
         ],
       },
-      {
-        enforce: 'pre',
-        test: /\.jsx?$/, // ?表示x有0个或一个
-        exclude: /(node_modules|bower_components)/,
-        include: path.resolve(__dirname, '../src'), // 只在include包含的目录下进行loader编译
-        use: [
-          {
-            loader: 'babel-loader',
-          },
-           {
-            loader: 'source-map-loader',
-          },
-        ],
-      },
+      // {
+      //   enforce: 'pre',
+      //   test: /\.jsx?$/, // ?表示x有0个或一个
+      //   exclude: /(node_modules|bower_components)/,
+      //   include: path.resolve(__dirname, '../src'), // 只在include包含的目录下进行loader编译
+      //   use: [
+      //     {
+      //       loader: 'babel-loader',
+      //     },
+      //      {
+      //       loader: 'source-map-loader',
+      //     },
+      //   ],
+      // },
       // 加载解析文件资源
       {
         test: /\.(jpe?g|png|gif)$/,
