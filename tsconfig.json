@@ -8,6 +8,7 @@
     "jsx": "react", // 在 .tsx文件里支持JSX
     "sourceMap": true, // 是否生成map文件
     "module": "commonjs", // 指定生成哪个模块系统代码
+    "allowSyntheticDefaultImports": true,
     "noImplicitAny": false, // 是否默认禁用 any
     "removeComments": true, // 是否移除注释
     "importHelpers": true,
@@ -21,7 +22,7 @@
       ]
     },
     "moduleResolution": "node",
-    "target": "ESNext", // 编译的目标是什么版本的
+    "target": "es2015", // 编译的目标是什么版本的
     "outDir": "build/dist", // 输出目录
     "lib": [ // 编译过程中  需要引入的库文件的列表
       "es5",

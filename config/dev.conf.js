@@ -21,20 +21,68 @@ const config = {
     historyApiFallback: true, // 所有404都连接到index.html
   },
   module: {
-    rules: [{
-      test: /\.(css|less)$/,
-      use: [ // loader解析的顺序是从下到上，从右到左的顺序
-        'style-loader', // 使用MiniCssExtractPlugin时就不能使用style-loader了
-        {
-          loader: 'css-loader',
-          options: {
-            importLoaders: 2, // 该方式可以让@import引入的css文件再次执行一边css打包loader
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          require.resolve('style-loader'),
+          {
+            loader: require.resolve('css-loader'),
+            options: {
+              importLoaders: 1
+            }
           },
-        },
-        'postcss-loader',
-        'less-loader',
-      ],
-    }, // 加载解析文件资源
+          {
+            loader: require.resolve('postcss-loader')
+          }
+        ]
+      },
+      {
+        test: /\.less$/,
+        exclude: [/src/],
+        use: [
+          require.resolve('style-loader'),
+          {
+            loader: require.resolve('css-loader'),
+            options: {
+              importLoaders: 1
+            }
+          },
+          {
+            loader: require.resolve('postcss-loader')
+          },
+          {
+            loader: require.resolve('less-loader'),
+            options: {
+              javascriptEnabled: true,
+              // importLoaders: 2, // 该方式可以让@import引入的css文件再次执行一边css打包loader
+            },
+          }
+        ]
+      },
+      {
+        test: /\.less$/,
+        exclude: [/node_modules/],
+        use: [
+          require.resolve('style-loader'),
+          {
+            loader: require.resolve('css-loader'),
+            options: {
+              modules: true,
+            }
+          },
+          {
+            loader: require.resolve('postcss-loader')
+          },
+          {
+            loader: require.resolve('less-loader'),
+            options: {
+              javascriptEnabled: true,
+              // importLoaders: 2, // 该方式可以让@import引入的css文件再次执行一边css打包loader
+            },
+          }
+        ]
+      },
     ],
   },
   plugins: [

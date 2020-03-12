@@ -13,8 +13,8 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.(css|less)$/,
-        use: [ // loader解析的顺序是从下到上，从右到左的顺序
+        test: /\.css$/,
+        use: [
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
@@ -23,16 +23,76 @@ const config = {
               publicPath: '../', //* ***最后打包的时候替换引入文件路径
             },
           },
-          // 'style-loader',  使用MiniCssExtractPlugin时就不能使用style-loader了
           {
-            loader: 'css-loader',
+            loader: require.resolve('css-loader'),
             options: {
-              importLoaders: 2, // 该方式可以让@import引入的css文件再次执行一边css打包loader
+              importLoaders: 1
+            }
+          },
+          {
+            loader: require.resolve('postcss-loader')
+          }
+        ]
+      },
+      {
+        test: /\.less$/,
+        exclude: [/src/],
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              filename: '[name]_[contenthash:8].css',
+              chunkFilename: '[name]_[contenthash:8].css',
+              publicPath: '../', //* ***最后打包的时候替换引入文件路径
             },
           },
-          'postcss-loader',
-          'less-loader',
-        ],
+          {
+            loader: require.resolve('css-loader'),
+            options: {
+              importLoaders: 1
+            }
+          },
+          {
+            loader: require.resolve('postcss-loader')
+          },
+          {
+            loader: require.resolve('less-loader'),
+            options: {
+              javascriptEnabled: true,
+              // importLoaders: 2, // 该方式可以让@import引入的css文件再次执行一边css打包loader
+            },
+          }
+        ]
+      },
+      {
+        test: /\.less$/,
+        exclude: [/node_modules/],
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              filename: '[name]_[contenthash:8].css',
+              chunkFilename: '[name]_[contenthash:8].css',
+              publicPath: '../', //* ***最后打包的时候替换引入文件路径
+            },
+          },
+          {
+            loader: require.resolve('css-loader'),
+            options: {
+              modules: true,
+            }
+          },
+          {
+            loader: require.resolve('postcss-loader')
+          },
+          {
+            loader: require.resolve('less-loader'),
+            options: {
+              javascriptEnabled: true,
+              // importLoaders: 2, // 该方式可以让@import引入的css文件再次执行一边css打包loader
+            },
+          }
+        ]
       },
     ],
   },

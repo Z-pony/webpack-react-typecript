@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const tsImportPluginFactory = require('ts-import-plugin');
 
 const template = path.resolve(__dirname, '../public/index.html');
 const env = process.env.NODE_ENV;
@@ -22,22 +23,42 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        loader: 'ts-loader',
+        test: /\.(tsx|ts)$/,
         exclude: /node_modules/,
+        use: [
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+              getCustomTransformers: () => ({
+                before: [tsImportPluginFactory(
+                  [{
+                    libraryName: 'antd',
+                    libraryDirectory: 'es',
+                    style: true,
+                  }],
+                )],
+              }),
+              compilerOptions: {
+                module: 'es2015',
+              },
+            },
+          },
+        ],
       },
       {
         enforce: 'pre',
-        test: /\.js$/,
-        loader: 'source-map-loader',
-      },
-      {
         test: /\.jsx?$/, // ?表示x有0个或一个
         exclude: /(node_modules|bower_components)/,
         include: path.resolve(__dirname, '../src'), // 只在include包含的目录下进行loader编译
-        use: {
-          loader: 'babel-loader',
-        },
+        use: [
+          {
+            loader: 'babel-loader',
+          },
+           {
+            loader: 'source-map-loader',
+          },
+        ],
       },
       // 加载解析文件资源
       {
@@ -69,8 +90,10 @@ module.exports = {
     }),
   ],
   optimization: {
+    namedChunks: true,
     splitChunks: {
       chunks: 'all',
+      minSize: 30000,
     },
     usedExports: true,
   },
