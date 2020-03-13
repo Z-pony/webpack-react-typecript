@@ -77,10 +77,7 @@ const config = {
             },
           },
           {
-            loader: require.resolve('css-loader'),
-            options: {
-              modules: true,
-            }
+            loader: require.resolve('css-loader')
           },
           {
             loader: require.resolve('postcss-loader')

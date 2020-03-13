@@ -29,7 +29,10 @@ const config = {
           {
             loader: require.resolve('css-loader'),
             options: {
-              importLoaders: 1
+              importLoaders: 1,
+              options: {
+                javascriptEnabled: true,
+              }
             }
           },
           {
@@ -54,6 +57,12 @@ const config = {
           {
             loader: require.resolve('less-loader'),
             options: {
+              modifyVars: {
+                'primary-color': '#A479EC',
+                'link-color': '#F49AF4',
+                'heading-color': '#F999D9',
+                'border-radius-base': '2px'
+              },
               javascriptEnabled: true,
               // importLoaders: 2, // 该方式可以让@import引入的css文件再次执行一边css打包loader
             },
@@ -67,9 +76,6 @@ const config = {
           require.resolve('style-loader'),
           {
             loader: require.resolve('css-loader'),
-            options: {
-              modules: true,
-            }
           },
           {
             loader: require.resolve('postcss-loader')
