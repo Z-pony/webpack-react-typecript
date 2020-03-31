@@ -10,7 +10,7 @@ import * as React from 'react';
 // import "src/assets/css/app.less";
 
 export default class App extends React.Component {
-  render() {
-    return <div />;
-  }
+    render() {
+        return <div />;
+    }
 }

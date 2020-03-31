@@ -1,14 +1,14 @@
-import * as React from "react";
+import * as React from 'react';
 
 export default class App extends React.Component {
   onChange = () => {};
 
   render() {
-    const style = {
-      color: "red"
-    };
+      const style = {
+          'color': 'red'
+      };
 
-    return (
+      return (
       // <Router>
       //    <Switch>
       //     <Route exact path="/">
@@ -19,7 +19,7 @@ export default class App extends React.Component {
       //     </Route>
       //   </Switch>
       // </Router>
-      <div className="app">111</div>
-    );
+          <div className="app">111</div>
+      );
   }
 }
