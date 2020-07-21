@@ -1,25 +1,20 @@
 import * as React from 'react';
 
-export default class App extends React.Component {
-  onChange = () => {};
-
-  render() {
-      const style = {
-          'color': 'red'
-      };
-
-      return (
-      // <Router>
-      //    <Switch>
-      //     <Route exact path="/">
-      //       <Home />
-      //     </Route>
-      //     <Route path="/about">
-      //       <About />
-      //     </Route>
-      //   </Switch>
-      // </Router>
-          <div className="app">111</div>
-      );
-  }
+export interface IppProps {
+  name?: string
 }
+
+const Login: React.FC<IppProps> = ({ name }) => (
+  <div>
+    {' '}
+    <h1>
+      Hello
+      {' '}
+      {name || '崩崩呢'}
+    </h1>
+
+  </div>
+);
+
+
+export default Login;

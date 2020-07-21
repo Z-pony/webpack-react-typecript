@@ -1,6 +1,10 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import dva from 'dva';
+import createhistory from 'history/createBrowserHistory';
 
-import App from "src/App";
+const app = dva({
+  history: createhistory(),
+});
 
-ReactDOM.render(<App />, document.getElementById("root"));
+app.router(require('./router').default);
+
+app.start('#root');
