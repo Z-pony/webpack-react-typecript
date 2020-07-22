@@ -211,6 +211,12 @@ module.exports = {
     "no-var": 2,             // 要求使用 let 或 const 而不是 var
     "object-shorthand": 2,   // 要求或禁止对象字面量中方法和属性使用简写语法
     "prefer-template":2,     // 要求使用模板字面量而非字符串连接
+    "import/no-unresolved": [
+      2,
+      {
+          "ignore": ["^src/"] // @ 是设置的路径别名
+      },
+    ],
     //////////////
     // React.相关 //
     //////////////
